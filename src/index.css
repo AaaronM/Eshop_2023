@@ -164,6 +164,15 @@ header .shop-cart .item .delete-icon:hover {
     
 }
 
+header .shop-cart  .total {
+    float: right;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 20px;
+
+}
+
 
 header .presenation {
     margin: 50px 0 ;
@@ -199,6 +208,24 @@ header .presenation::before {
     font-weight: 300;
     color: #fff;
 }
+
+.categories div {
+    display: inline-block;
+    background: #f2f2f2;
+    border-radius: 50px;
+    padding: 10px 20px;
+    margin-bottom: 50px;
+    margin-right: 15px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 500ms ease ;
+}
+
+.categories div:hover {
+    border-color: silver;
+    transform: scale(1.1);
+}
+
 
 main {
    display: flex;

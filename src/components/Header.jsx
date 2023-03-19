@@ -12,7 +12,7 @@ const showOrder = (props) => {
         <Order onDelete={props.onDelete} key={el.id} item={el} />
       ))}
 
-      <p className="total"> Total: ${total}</p>
+      <p className="total"> Total: ${new Intl.NumberFormat().format(total)}</p>
     </div>
   );
 };

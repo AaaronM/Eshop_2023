@@ -2,12 +2,14 @@ import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Items from "./components/Items";
+import Categories from "./components/Categories";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       orders: [],
+      currentItems: [],
       items: [
         {
           id: 1,
@@ -15,7 +17,7 @@ class App extends React.Component {
           img: "table.jpeg",
           desc: "Crafted with highly active black Saint Laurent marble, coffee table by VUUE incorporates geometric design elements for a stunning silhouette. The marble's dynamic white veining and striking tones of cocoa and copper give it mesmerizing allure.",
           category: "tables",
-          price: "849.00",
+          price: "849.99",
         },
         {
           id: 2,
@@ -47,7 +49,7 @@ class App extends React.Component {
           img: "lounge_chair.jpeg",
           desc: "Exaggerated scale and dramatic angles create midcentury appeal with a distinctively modern twist from the fresh design minds at Fred Segal. ",
           category: "chairs",
-          price: "780.00",
+          price: "780.99",
         },
         {
           id: 6,
@@ -55,18 +57,21 @@ class App extends React.Component {
           img: "bed.jpeg",
           desc: "Inspired by simple forms and luxe materials, Kravitz Designreimagines iconic silhouettes of the '60s and '70s. Floating platform bed is wrapped in ivory boucle from footboard to headboard.",
           category: "bed",
-          price: "2180.00",
+          price: "2180.99",
         },
       ],
     };
+    this.state.currentItems = this.state.items;
     this.addToOrder = this.addToOrder.bind(this);
     this.deleteOrder = this.deleteOrder.bind(this);
+    this.chooseCategory = this.chooseCategory.bind(this);
   }
   render() {
     return (
       <div className="wrapper">
         <Header orders={this.state.orders} onDelete={this.deleteOrder} />
-        <Items items={this.state.items} onAdd={this.addToOrder} />
+        <Categories chooseCategory={this.chooseCategory} />
+        <Items items={this.state.currentItems} onAdd={this.addToOrder} />
         <Footer />
       </div>
     );
@@ -81,6 +86,17 @@ class App extends React.Component {
   }
   deleteOrder(id) {
     this.setState({ orders: this.state.orders.filter((el) => el.id !== id) });
+  }
+
+  chooseCategory(category) {
+    if (category === "all") {
+      this.setState({ currentItems: this.state.items });
+      return;
+    }
+
+    this.setState({
+      currentItems: this.state.items.filter((el) => el.category === category),
+    });
   }
 }
 
